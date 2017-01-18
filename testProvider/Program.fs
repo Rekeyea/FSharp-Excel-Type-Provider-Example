@@ -9,13 +9,11 @@ open libreria
 type ExcelType = ExcelFile<"typeOfExcel.xlsx">
 
 let mapExcelRowToProduct (x:ExcelType.Row) = 
-    let price = x.Price
-    let cost = x.Cost
     let product = Product()
     product.Name <- x.``Product Name``
     product.Description <- x.Description
-    product.ExpectedEarnings <- (price / cost) * 100.0
-    product.Value <- price
+    product.ExpectedEarnings <- (x.Price / x.Cost) * 100.0
+    product.Value <- x.Price
     product
 
 
